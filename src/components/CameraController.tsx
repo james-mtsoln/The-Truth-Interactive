@@ -28,7 +28,7 @@ export const CameraController = () => {
         // For now, let's assume we can control the camera directly and the controls will sync or be disabled.
 
         if (viewMode === 'TIMELINE' && selectedTopic) {
-            const targetPos = latLonToVector3(selectedTopic.lat, selectedTopic.lon, EARTH_RADIUS);
+            const targetPos = latLonToVector3(selectedTopic.location.lat, selectedTopic.location.lon, EARTH_RADIUS);
 
             // Calculate a position slightly offset from the target to look at it
             // We want to zoom in close
