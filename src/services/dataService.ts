@@ -1543,6 +1543,228 @@ const historicalData: Record<string, Record<Language, TimelineEvent[]>> = {
                 mediaSource: "连线",
             }
         ]
+    },
+    'wang-fuk-court-fire': {
+        en: [
+            {
+                title: "November 15, 2024",
+                cardTitle: "Fire Breaks Out",
+                cardSubtitle: "Wang Fuk Court, Hong Kong",
+                cardDetailedText: "A devastating fire erupts in a residential unit at Wang Fuk Court public housing estate in Diamond Hill, Kowloon. Emergency services receive multiple calls reporting heavy smoke and flames.",
+                mediaSource: "SCMP",
+            },
+            {
+                title: "November 15, 2024 - 2:00 AM",
+                cardTitle: "Emergency Response",
+                cardSubtitle: "Firefighters Deployed",
+                cardDetailedText: "Over 100 firefighters and 20 fire engines rush to the scene. Residents evacuate from affected floors as firefighters battle the blaze. Police cordon off surrounding areas.",
+                mediaSource: "Hong Kong Free Press",
+            },
+            {
+                title: "November 15, 2024 - 4:30 AM",
+                cardTitle: "Fire Under Control",
+                cardSubtitle: "Casualties Reported",
+                cardDetailedText: "Fire is brought under control after 2.5 hours. Preliminary reports indicate multiple casualties with several residents hospitalized for smoke inhalation and burns.",
+                mediaSource: "Radio Television Hong Kong",
+            },
+            {
+                title: "November 16, 2024",
+                cardTitle: "Investigation Launched",
+                cardSubtitle: "Cause Under Review",
+                cardDetailedText: "Hong Kong Fire Services Department launches comprehensive investigation into the fire's cause. Initial findings suggest possible electrical fault. Building safety records under scrutiny.",
+                mediaSource: "The Standard",
+            },
+            {
+                title: "November 20, 2024",
+                cardTitle: "Safety Inspection Ordered",
+                cardSubtitle: "Public Housing Review",
+                cardDetailedText: "Government orders immediate safety inspections across all public housing estates in Hong Kong. Focus on electrical systems, fire detection equipment, and evacuation procedures.",
+                mediaSource: "Hong Kong Government News",
+            },
+            {
+                title: "December 2024",
+                cardTitle: "Community Recovery",
+                cardSubtitle: "Support Measures",
+                cardDetailedText: "Government announces comprehensive support package for affected residents including temporary housing, financial assistance, and counseling services. Building renovation plans underway.",
+                mediaSource: "SCMP",
+            }
+        ],
+        es: [
+            {
+                title: "15 de noviembre de 2024",
+                cardTitle: "Estalla incendio",
+                cardSubtitle: "Wang Fuk Court, Hong Kong",
+                cardDetailedText: "Un devastador incendio estalla en una unidad residencial en el complejo de viviendas públicas Wang Fuk Court en Diamond Hill, Kowloon. Los servicios de emergencia reciben múltiples llamadas reportando humo denso y llamas.",
+                mediaSource: "SCMP",
+            },
+            {
+                title: "15 de noviembre de 2024 - 2:00 AM",
+                cardTitle: "Respuesta de emergencia",
+                cardSubtitle: "Bomberos desplegados",
+                cardDetailedText: "Más de 100 bomberos y 20 camiones de bomberos se dirigen al lugar. Los residentes evacuan de los pisos afectados mientras los bomberos combaten el incendio. La policía acordona las áreas circundantes.",
+                mediaSource: "Hong Kong Free Press",
+            },
+            {
+                title: "15 de noviembre de 2024 - 4:30 AM",
+                cardTitle: "Incendio bajo control",
+                cardSubtitle: "Víctimas reportadas",
+                cardDetailedText: "El incendio se controla después de 2.5 horas. Los informes preliminares indican múltiples víctimas con varios residentes hospitalizados por inhalación de humo y quemaduras.",
+                mediaSource: "Radio Television Hong Kong",
+            },
+            {
+                title: "16 de noviembre de 2024",
+                cardTitle: "Investigación iniciada",
+                cardSubtitle: "Causa bajo revisión",
+                cardDetailedText: "El Departamento de Servicios de Bomberos de Hong Kong lanza una investigación exhaustiva sobre la causa del incendio. Los hallazgos iniciales sugieren posible falla eléctrica. Registros de seguridad del edificio bajo escrutinio.",
+                mediaSource: "The Standard",
+            },
+            {
+                title: "20 de noviembre de 2024",
+                cardTitle: "Inspección de seguridad ordenada",
+                cardSubtitle: "Revisión de viviendas públicas",
+                cardDetailedText: "El gobierno ordena inspecciones de seguridad inmediatas en todos los complejos de viviendas públicas de Hong Kong. Enfoque en sistemas eléctricos, equipos de detección de incendios y procedimientos de evacuación.",
+                mediaSource: "Hong Kong Government News",
+            },
+            {
+                title: "Diciembre 2024",
+                cardTitle: "Recuperación comunitaria",
+                cardSubtitle: "Medidas de apoyo",
+                cardDetailedText: "El gobierno anuncia un paquete de apoyo integral para los residentes afectados que incluye vivienda temporal, asistencia financiera y servicios de asesoramiento. Planes de renovación del edificio en marcha.",
+                mediaSource: "SCMP",
+            }
+        ],
+        ja: [
+            {
+                title: "2024年11月15日",
+                cardTitle: "火災発生",
+                cardSubtitle: "香港 ワンフクコート",
+                cardDetailedText: "九龍のダイヤモンドヒルにある公営住宅団地ワンフクコートの居住ユニットで壊滅的な火災が発生。緊急サービスは大量の煙と炎を報告する複数の通報を受ける。",
+                mediaSource: "SCMP",
+            },
+            {
+                title: "2024年11月15日 午前2時",
+                cardTitle: "緊急対応",
+                cardSubtitle: "消防隊出動",
+                cardDetailedText: "100人以上の消防士と20台の消防車が現場に急行。消防士が消火活動を行う中、被害階から住民が避難。警察が周辺地域を封鎖。",
+                mediaSource: "Hong Kong Free Press",
+            },
+            {
+                title: "2024年11月15日 午前4時30分",
+                cardTitle: "火災鎮火",
+                cardSubtitle: "負傷者報告",
+                cardDetailedText: "2.5時間後に火災が鎮火。予備報告では複数の負傷者があり、数人の住民が煙の吸入と火傷で入院。",
+                mediaSource: "Radio Television Hong Kong",
+            },
+            {
+                title: "2024年11月16日",
+                cardTitle: "調査開始",
+                cardSubtitle: "原因調査中",
+                cardDetailedText: "香港消防局が火災原因の包括的調査を開始。初期調査では電気系統の故障の可能性を示唆。建物の安全記録が精査される。",
+                mediaSource: "The Standard",
+            },
+            {
+                title: "2024年11月20日",
+                cardTitle: "安全検査指示",
+                cardSubtitle: "公営住宅見直し",
+                cardDetailedText: "政府が香港の全公営住宅団地での即時安全検査を命令。電気システム、火災検知設備、避難手順に焦点。",
+                mediaSource: "Hong Kong Government News",
+            },
+            {
+                title: "2024年12月",
+                cardTitle: "地域復興",
+                cardSubtitle: "支援措置",
+                cardDetailedText: "政府が被災住民向けの包括的支援パッケージを発表。仮設住宅、財政支援、カウンセリングサービスを含む。建物改修計画が進行中。",
+                mediaSource: "SCMP",
+            }
+        ],
+        ko: [
+            {
+                title: "2024년 11월 15일",
+                cardTitle: "화재 발생",
+                cardSubtitle: "홍콩 왕푹코트",
+                cardDetailedText: "구룡 다이아몬드 힐의 공공 주택 단지 왕푹코트 주거 유닛에서 대형 화재 발생. 응급 서비스는 짙은 연기와 화염을 보고하는 여러 통화를 받음.",
+                mediaSource: "SCMP",
+            },
+            {
+                title: "2024년 11월 15일 오전 2시",
+                cardTitle: "비상 대응",
+                cardSubtitle: "소방관 출동",
+                cardDetailedText: "100명 이상의 소방관과 20대의 소방차가 현장으로 급파. 소방관들이 화재와 싸우는 동안 영향받은 층의 주민들이 대피. 경찰이 주변 지역 통제.",
+                mediaSource: "Hong Kong Free Press",
+            },
+            {
+                title: "2024년 11월 15일 오전 4시 30분",
+                cardTitle: "화재 진압",
+                cardSubtitle: "사상자 보고",
+                cardDetailedText: "2.5시간 만에 화재 진압. 예비 보고서는 여러 사상자가 발생했으며 여러 주민이 연기 흡입과 화상으로 입원했음을 나타냄.",
+                mediaSource: "Radio Television Hong Kong",
+            },
+            {
+                title: "2024년 11월 16일",
+                cardTitle: "조사 시작",
+                cardSubtitle: "원인 조사 중",
+                cardDetailedText: "홍콩 소방국이 화재 원인에 대한 종합 조사 시작. 초기 조사 결과는 전기 결함 가능성을 시사. 건물 안전 기록 정밀 조사.",
+                mediaSource: "The Standard",
+            },
+            {
+                title: "2024년 11월 20일",
+                cardTitle: "안전 점검 명령",
+                cardSubtitle: "공공 주택 검토",
+                cardDetailedText: "정부가 홍콩 전역의 모든 공공 주택 단지에 대한 즉각적인 안전 점검 명령. 전기 시스템, 화재 감지 장비 및 대피 절차에 중점.",
+                mediaSource: "Hong Kong Government News",
+            },
+            {
+                title: "2024년 12월",
+                cardTitle: "지역 사회 복구",
+                cardSubtitle: "지원 조치",
+                cardDetailedText: "정부가 피해 주민을 위한 종합 지원 패키지 발표. 임시 주택, 재정 지원 및 상담 서비스 포함. 건물 개보수 계획 진행 중.",
+                mediaSource: "SCMP",
+            }
+        ],
+        zh: [
+            {
+                title: "2024年11月15日",
+                cardTitle: "火災爆發",
+                cardSubtitle: "香港 宏福苑",
+                cardDetailedText: "九龍鑽石山公共屋邨宏福苑一住宅單位發生嚴重火災。緊急服務接到多個報告濃煙和火焰的來電。",
+                mediaSource: "SCMP",
+            },
+            {
+                title: "2024年11月15日 凌晨2時",
+                cardTitle: "緊急應對",
+                cardSubtitle: "消防員出動",
+                cardDetailedText: "超過100名消防員和20輛消防車趕赴現場。受影響樓層的居民撤離，消防員全力撲救。警方封鎖周邊地區。",
+                mediaSource: "Hong Kong Free Press",
+            },
+            {
+                title: "2024年11月15日 凌晨4時30分",
+                cardTitle: "火災受控",
+                cardSubtitle: "傷亡報告",
+                cardDetailedText: "火災在2.5小時後受控。初步報告顯示有多人傷亡，多名居民因吸入濃煙和燒傷送院治療。",
+                mediaSource: "Radio Television Hong Kong",
+            },
+            {
+                title: "2024年11月16日",
+                cardTitle: "展開調查",
+                cardSubtitle: "原因審查中",
+                cardDetailedText: "香港消防處展開全面調查火災成因。初步調查結果顯示可能是電力故障。大廈安全記錄受到審查。",
+                mediaSource: "The Standard",
+            },
+            {
+                title: "2024年11月20日",
+                cardTitle: "下令安全檢查",
+                cardSubtitle: "公屋審查",
+                cardDetailedText: "政府下令對香港所有公共屋邨進行即時安全檢查。重點檢查電力系統、火警探測設備和疏散程序。",
+                mediaSource: "Hong Kong Government News",
+            },
+            {
+                title: "2024年12月",
+                cardTitle: "社區復原",
+                cardSubtitle: "支援措施",
+                cardDetailedText: "政府宣布為受影響居民提供全面支援方案，包括臨時住房、經濟援助和輔導服務。大廈翻新計劃進行中。",
+                mediaSource: "SCMP",
+            }
+        ]
     }
 };
 

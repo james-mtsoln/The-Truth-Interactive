@@ -170,4 +170,24 @@ export const topics: Topic[] = [
         },
         type: 'technology',
     },
+    {
+        id: 'wang-fuk-court-fire',
+        title: {
+            en: 'WANG FUK COURT FIRE',
+            es: 'INCENDIO DE WANG FUK COURT',
+            ja: 'ワンフクコート火災',
+            ko: '왕푹코트 화재',
+            zh: '宏福苑火災',
+        },
+        lat: 22.3193,
+        lon: 114.1694,
+        summary: {
+            en: 'Deadly residential fire in Hong Kong public housing estate',
+            es: 'Incendio mortal en complejo habitacional público de Hong Kong',
+            ja: '香港公営住宅での致命的な火災',
+            ko: '홍콩 공공 주택 단지의 치명적인 화재',
+            zh: '香港公共屋邨致命火災',
+        },
+        type: 'conflict',
+    },
 ];
