@@ -358,23 +358,23 @@ const seed = async () => {
     // Seed Media Outlets
     const mediaOutlets = [
         // International Sources
-        { name: 'BBC News', icon: '🇬🇧', region: 'international', url: 'https://www.bbc.com/news', order: 1 },
-        { name: 'Al Jazeera', icon: '🌍', region: 'international', url: 'https://www.aljazeera.com', order: 2 },
-        { name: 'Reuters', icon: '📰', region: 'international', url: 'https://www.reuters.com', order: 3 },
-        { name: 'The Guardian', icon: '🇬🇧', region: 'international', url: 'https://www.theguardian.com', order: 4 },
-        { name: 'France 24', icon: '🇫🇷', region: 'international', url: 'https://www.france24.com', order: 5 },
-        { name: 'Deutsche Welle', icon: '🇩🇪', region: 'international', url: 'https://www.dw.com', order: 6 },
-        { name: 'NHK World', icon: '🇯🇵', region: 'international', url: 'https://www3.nhk.or.jp/nhkworld', order: 7 },
-        { name: 'CGTN', icon: '🇨🇳', region: 'international', url: 'https://www.cgtn.com', order: 8 },
+        { name: 'BBC News', icon: '🇬🇧', region: 'international' as const, url: 'https://www.bbc.com/news', order: 1 },
+        { name: 'Al Jazeera', icon: '🌍', region: 'international' as const, url: 'https://www.aljazeera.com', order: 2 },
+        { name: 'Reuters', icon: '📰', region: 'international' as const, url: 'https://www.reuters.com', order: 3 },
+        { name: 'The Guardian', icon: '🇬🇧', region: 'international' as const, url: 'https://www.theguardian.com', order: 4 },
+        { name: 'France 24', icon: '🇫🇷', region: 'international' as const, url: 'https://www.france24.com', order: 5 },
+        { name: 'Deutsche Welle', icon: '🇩🇪', region: 'international' as const, url: 'https://www.dw.com', order: 6 },
+        { name: 'NHK World', icon: '🇯🇵', region: 'international' as const, url: 'https://www3.nhk.or.jp/nhkworld', order: 7 },
+        { name: 'CGTN', icon: '🇨🇳', region: 'international' as const, url: 'https://www.cgtn.com', order: 8 },
         // US Sources
-        { name: 'CNN', icon: '📺', region: 'us', url: 'https://www.cnn.com', order: 1 },
-        { name: 'The New York Times', icon: '📰', region: 'us', url: 'https://www.nytimes.com', order: 2 },
-        { name: 'The Washington Post', icon: '📰', region: 'us', url: 'https://www.washingtonpost.com', order: 3 },
-        { name: 'NPR', icon: '📻', region: 'us', url: 'https://www.npr.org', order: 4 },
-        { name: 'Fox News', icon: '📺', region: 'us', url: 'https://www.foxnews.com', order: 5 },
-        { name: 'MSNBC', icon: '📺', region: 'us', url: 'https://www.msnbc.com', order: 6 },
-        { name: 'Bloomberg', icon: '💼', region: 'us', url: 'https://www.bloomberg.com', order: 7 },
-        { name: 'Associated Press', icon: '📰', region: 'us', url: 'https://apnews.com', order: 8 },
+        { name: 'CNN', icon: '📺', region: 'us' as const, url: 'https://www.cnn.com', order: 1 },
+        { name: 'The New York Times', icon: '📰', region: 'us' as const, url: 'https://www.nytimes.com', order: 2 },
+        { name: 'The Washington Post', icon: '📰', region: 'us' as const, url: 'https://www.washingtonpost.com', order: 3 },
+        { name: 'NPR', icon: '📻', region: 'us' as const, url: 'https://www.npr.org', order: 4 },
+        { name: 'Fox News', icon: '📺', region: 'us' as const, url: 'https://www.foxnews.com', order: 5 },
+        { name: 'MSNBC', icon: '📺', region: 'us' as const, url: 'https://www.msnbc.com', order: 6 },
+        { name: 'Bloomberg', icon: '💼', region: 'us' as const, url: 'https://www.bloomberg.com', order: 7 },
+        { name: 'Associated Press', icon: '📰', region: 'us' as const, url: 'https://apnews.com', order: 8 },
     ];
 
     console.log('Seeding media outlets...');
