@@ -78,6 +78,21 @@ export interface TimelineEvent {
 }
 
 /**
+ * Media Outlet Collection
+ * Represents a news media outlet displayed in sidebars
+ */
+export interface MediaOutlet {
+    id: string;
+    name: string;
+    icon: string; // Emoji or URL to icon
+    region: 'international' | 'us';
+    url?: string;
+    order: number;
+    createdAt: string;
+    updatedAt: string;
+}
+
+/**
  * Payload API List Response
  * Standard Payload CMS pagination structure
  */

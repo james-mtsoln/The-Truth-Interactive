@@ -1,6 +1,6 @@
 /* THIS FILE IS USED FOR PAYLOAD REST API */
 import { REST_GET, REST_POST, REST_DELETE, REST_PUT, REST_PATCH, REST_OPTIONS } from '@payloadcms/next/routes'
-import config from '@/payload.config'
+import config from '../../../../payload.config'
 
 export const GET = REST_GET(config)
 export const POST = REST_POST(config)

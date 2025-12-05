@@ -9,7 +9,8 @@
         "start": "next start",
         "lint": "next lint",
         "generate:types": "payload generate:types",
-        "payload": "payload"
+        "payload": "payload",
+        "seed": "tsx src/seed.ts"
     },
     "dependencies": {
         "@payloadcms/db-mongodb": "latest",

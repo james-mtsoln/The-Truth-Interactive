@@ -5,7 +5,7 @@
  * Fetches data from the local Payload CMS instance.
  */
 
-import type { Topic, TimelineEvent, Language, PayloadListResponse } from '../types/payload-types';
+import type { Topic, TimelineEvent, MediaOutlet, Language, PayloadListResponse } from '../types/payload-types';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
@@ -126,6 +126,27 @@ export class PayloadAPIClient {
      */
     clearCache(): void {
         this.timelineCache.clear();
+    }
+
+    /**
+     * Get media outlets by region
+     */
+    async getMediaOutlets(region?: 'international' | 'us'): Promise<MediaOutlet[]> {
+        try {
+            let url = `${API_URL}/media-outlets?limit=100&sort=order`;
+            if (region) {
+                url += `&where[region][equals]=${region}`;
+            }
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch media outlets: ${response.statusText}`);
+            }
+            const data: PayloadListResponse<MediaOutlet> = await response.json();
+            return data.docs;
+        } catch (error) {
+            console.error('Error fetching media outlets:', error);
+            return [];
+        }
     }
 }
 

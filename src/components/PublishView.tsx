@@ -1,34 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useStore, type Language } from '../store/useStore';
 import { payloadAPI, getLocalizedValue } from '../services/payloadService';
-import type { Topic, TimelineEvent } from '../types/payload-types';
+import type { Topic, TimelineEvent, MediaOutlet } from '../types/payload-types';
 import './PublishView.css';
-
-// Media outlets data
-const internationalSources = [
-    { name: 'Al Jazeera', icon: '🌍' },
-    { name: 'The Guardian', icon: '🇬🇧' },
-    { name: 'BBC News', icon: '📺' },
-    { name: 'The Wall Street Journal', icon: '📰' },
-    { name: 'Reuters', icon: '📡' },
-    { name: 'BBC News', icon: '📺' },
-    { name: 'Le Monde', icon: '🇫🇷' },
-    { name: 'Der Spiegel', icon: '🇩🇪' },
-    { name: 'The New York Times', icon: '🗽' },
-    { name: 'MSNBC', icon: '📺' },
-    { name: 'The Guardian', icon: '🇬🇧' },
-    { name: 'CNN', icon: '🔴' },
-];
-
-const usSources = [
-    { name: 'Breitbart', icon: '🔶' },
-    { name: 'Yomiuri Shimbun', icon: '🇯🇵' },
-    { name: 'The Telegraph', icon: '🇬🇧' },
-    { name: 'The Australian', icon: '🇦🇺' },
-    { name: 'The Times of India', icon: '🇮🇳' },
-    { name: 'Wall Street Journal', icon: '📰' },
-    { name: 'Fox News', icon: '🦊' },
-];
 
 // Translations
 const translations = {
@@ -104,6 +78,8 @@ export const PublishView = () => {
     const [topics, setTopics] = useState<Topic[]>([]);
     const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
     const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>([]);
+    const [internationalSources, setInternationalSources] = useState<MediaOutlet[]>([]);
+    const [usSources, setUsSources] = useState<MediaOutlet[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -119,6 +95,12 @@ export const PublishView = () => {
             }
             setIsLoading(false);
         });
+    }, []);
+
+    // Load media outlets
+    useEffect(() => {
+        payloadAPI.getMediaOutlets('international').then(setInternationalSources);
+        payloadAPI.getMediaOutlets('us').then(setUsSources);
     }, []);
 
     // Load timeline events when topic changes
@@ -217,8 +199,8 @@ export const PublishView = () => {
                 <aside className="sidebar sidebar-left">
                     <h3 className="sidebar-title">{t.international}</h3>
                     <ul className="source-list">
-                        {internationalSources.map((source, index) => (
-                            <li key={index} className="source-item">
+                        {internationalSources.map((source) => (
+                            <li key={source.id} className="source-item">
                                 <span className="source-icon">{source.icon}</span>
                                 <span className="source-name">{source.name}</span>
                             </li>
@@ -274,7 +256,7 @@ export const PublishView = () => {
                                                 <h3>{getLocalizedValue(event.cardTitle, language)}</h3>
                                                 <p>{getLocalizedValue(event.cardDetailedText, language)}</p>
                                                 {event.mediaSource && (
-                                                    <span className="media-source">— {event.mediaSource}</span>
+                                                    <span className="media-source">— {typeof event.mediaSource === 'string' ? event.mediaSource : event.mediaSource.name}</span>
                                                 )}
                                             </div>
                                         </div>
@@ -291,8 +273,8 @@ export const PublishView = () => {
                 <aside className="sidebar sidebar-right">
                     <h3 className="sidebar-title">{t.usSources}</h3>
                     <ul className="source-list">
-                        {usSources.map((source, index) => (
-                            <li key={index} className="source-item">
+                        {usSources.map((source) => (
+                            <li key={source.id} className="source-item">
                                 <span className="source-icon">{source.icon}</span>
                                 <span className="source-name">{source.name}</span>
                             </li>

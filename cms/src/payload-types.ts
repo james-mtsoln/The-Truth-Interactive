@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     topics: Topic;
     'timeline-events': TimelineEvent;
+    'media-outlets': MediaOutlet;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     topics: TopicsSelect<false> | TopicsSelect<true>;
     'timeline-events': TimelineEventsSelect<false> | TimelineEventsSelect<true>;
+    'media-outlets': MediaOutletsSelect<false> | MediaOutletsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -176,11 +178,92 @@ export interface Topic {
   id: string;
   title: string;
   slug: string;
+  /**
+   * Toggle to show/hide this topic on the globe in View A
+   */
+  showInViewA?: boolean | null;
   summary?: string | null;
   type: 'environment' | 'technology' | 'economy' | 'health' | 'conflict' | 'science';
   location: {
     lat: number;
     lon: number;
+  };
+  /**
+   * Search engine optimization and social media metadata
+   */
+  seo?: {
+    /**
+     * Title displayed in search results (50-60 characters recommended)
+     */
+    metaTitle?: string | null;
+    /**
+     * Description shown in search results (150-160 characters recommended)
+     */
+    metaDescription?: string | null;
+    /**
+     * Comma-separated keywords for SEO
+     */
+    keywords?: string | null;
+    /**
+     * The preferred URL for this content (for duplicate content handling)
+     */
+    canonicalUrl?: string | null;
+    /**
+     * Prevent search engines from indexing this page
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page
+     */
+    noFollow?: boolean | null;
+    openGraph?: {
+      /**
+       * Title for Facebook/LinkedIn shares (defaults to Meta Title if empty)
+       */
+      ogTitle?: string | null;
+      /**
+       * Description for Facebook/LinkedIn shares
+       */
+      ogDescription?: string | null;
+      /**
+       * Image for social shares (1200x630px recommended)
+       */
+      ogImage?: (string | null) | Media;
+      ogType?: ('article' | 'website' | 'profile') | null;
+    };
+    twitter?: {
+      twitterCard?: ('summary' | 'summary_large_image') | null;
+      /**
+       * Title for Twitter shares (defaults to Meta Title if empty)
+       */
+      twitterTitle?: string | null;
+      /**
+       * Description for Twitter shares
+       */
+      twitterDescription?: string | null;
+      /**
+       * Image for Twitter shares (use OG Image if not set)
+       */
+      twitterImage?: (string | null) | Media;
+      /**
+       * @username of the content creator
+       */
+      twitterCreator?: string | null;
+    };
+    /**
+     * Schema.org structured data for rich search results
+     */
+    structuredData?: {
+      schemaType?: ('Article' | 'NewsArticle' | 'Event' | 'Organization' | 'WebPage') | null;
+      author?: string | null;
+      publisher?: string | null;
+      datePublished?: string | null;
+      dateModified?: string | null;
+      /**
+       * Override with custom JSON-LD (advanced users only)
+       */
+      customJsonLd?: string | null;
+    };
   };
   updatedAt: string;
   createdAt: string;
@@ -191,6 +274,9 @@ export interface Topic {
  */
 export interface TimelineEvent {
   id: string;
+  /**
+   * The parent topic this event belongs to
+   */
   topic: string | Topic;
   title: string;
   cardTitle?: string | null;
@@ -201,7 +287,110 @@ export interface TimelineEvent {
   newsPerspective?: string | null;
   mediaBias?: string | null;
   diverseViewpoint?: string | null;
-  order: number;
+  order?: number | null;
+  /**
+   * Search engine optimization and social media metadata
+   */
+  seo?: {
+    /**
+     * Title displayed in search results (50-60 characters recommended)
+     */
+    metaTitle?: string | null;
+    /**
+     * Description shown in search results (150-160 characters recommended)
+     */
+    metaDescription?: string | null;
+    /**
+     * Comma-separated keywords for SEO
+     */
+    keywords?: string | null;
+    /**
+     * The preferred URL for this content (for duplicate content handling)
+     */
+    canonicalUrl?: string | null;
+    /**
+     * Prevent search engines from indexing this page
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page
+     */
+    noFollow?: boolean | null;
+    openGraph?: {
+      /**
+       * Title for Facebook/LinkedIn shares (defaults to Meta Title if empty)
+       */
+      ogTitle?: string | null;
+      /**
+       * Description for Facebook/LinkedIn shares
+       */
+      ogDescription?: string | null;
+      /**
+       * Image for social shares (1200x630px recommended)
+       */
+      ogImage?: (string | null) | Media;
+      ogType?: ('article' | 'website' | 'profile') | null;
+    };
+    twitter?: {
+      twitterCard?: ('summary' | 'summary_large_image') | null;
+      /**
+       * Title for Twitter shares (defaults to Meta Title if empty)
+       */
+      twitterTitle?: string | null;
+      /**
+       * Description for Twitter shares
+       */
+      twitterDescription?: string | null;
+      /**
+       * Image for Twitter shares (use OG Image if not set)
+       */
+      twitterImage?: (string | null) | Media;
+      /**
+       * @username of the content creator
+       */
+      twitterCreator?: string | null;
+    };
+    /**
+     * Schema.org structured data for rich search results
+     */
+    structuredData?: {
+      schemaType?: ('Article' | 'NewsArticle' | 'Event' | 'Organization' | 'WebPage') | null;
+      author?: string | null;
+      publisher?: string | null;
+      datePublished?: string | null;
+      dateModified?: string | null;
+      /**
+       * Override with custom JSON-LD (advanced users only)
+       */
+      customJsonLd?: string | null;
+    };
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media-outlets".
+ */
+export interface MediaOutlet {
+  id: string;
+  name: string;
+  /**
+   * Emoji icon or URL to icon image
+   */
+  icon: string;
+  /**
+   * Determines which sidebar the outlet appears in
+   */
+  region: 'international' | 'us';
+  /**
+   * Link to the media outlet website
+   */
+  url?: string | null;
+  /**
+   * Order in which to display (lower = first)
+   */
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -244,6 +433,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'timeline-events';
         value: string | TimelineEvent;
+      } | null)
+    | ({
+        relationTo: 'media-outlets';
+        value: string | MediaOutlet;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -334,6 +527,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface TopicsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  showInViewA?: T;
   summary?: T;
   type?: T;
   location?:
@@ -341,6 +535,43 @@ export interface TopicsSelect<T extends boolean = true> {
     | {
         lat?: T;
         lon?: T;
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        keywords?: T;
+        canonicalUrl?: T;
+        noIndex?: T;
+        noFollow?: T;
+        openGraph?:
+          | T
+          | {
+              ogTitle?: T;
+              ogDescription?: T;
+              ogImage?: T;
+              ogType?: T;
+            };
+        twitter?:
+          | T
+          | {
+              twitterCard?: T;
+              twitterTitle?: T;
+              twitterDescription?: T;
+              twitterImage?: T;
+              twitterCreator?: T;
+            };
+        structuredData?:
+          | T
+          | {
+              schemaType?: T;
+              author?: T;
+              publisher?: T;
+              datePublished?: T;
+              dateModified?: T;
+              customJsonLd?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
@@ -360,6 +591,56 @@ export interface TimelineEventsSelect<T extends boolean = true> {
   newsPerspective?: T;
   mediaBias?: T;
   diverseViewpoint?: T;
+  order?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        keywords?: T;
+        canonicalUrl?: T;
+        noIndex?: T;
+        noFollow?: T;
+        openGraph?:
+          | T
+          | {
+              ogTitle?: T;
+              ogDescription?: T;
+              ogImage?: T;
+              ogType?: T;
+            };
+        twitter?:
+          | T
+          | {
+              twitterCard?: T;
+              twitterTitle?: T;
+              twitterDescription?: T;
+              twitterImage?: T;
+              twitterCreator?: T;
+            };
+        structuredData?:
+          | T
+          | {
+              schemaType?: T;
+              author?: T;
+              publisher?: T;
+              datePublished?: T;
+              dateModified?: T;
+              customJsonLd?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media-outlets_select".
+ */
+export interface MediaOutletsSelect<T extends boolean = true> {
+  name?: T;
+  icon?: T;
+  region?: T;
+  url?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;

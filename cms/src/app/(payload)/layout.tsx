@@ -1,8 +1,8 @@
 /* THIS FILE IS USED FOR PAYLOAD ADMIN UI */
-import config from '@/payload.config'
+import config from '../../payload.config'
 import '@payloadcms/next/css'
 import { RootLayout } from '@payloadcms/next/layouts'
-import { importMap } from '@/importMap'
+import { importMap } from '../../importMap'
 import { serverFunction } from './server-functions'
 import React from 'react'
 

@@ -355,6 +355,51 @@ const seed = async () => {
         }
     }
 
+    // Seed Media Outlets
+    const mediaOutlets = [
+        // International Sources
+        { name: 'BBC News', icon: '🇬🇧', region: 'international', url: 'https://www.bbc.com/news', order: 1 },
+        { name: 'Al Jazeera', icon: '🌍', region: 'international', url: 'https://www.aljazeera.com', order: 2 },
+        { name: 'Reuters', icon: '📰', region: 'international', url: 'https://www.reuters.com', order: 3 },
+        { name: 'The Guardian', icon: '🇬🇧', region: 'international', url: 'https://www.theguardian.com', order: 4 },
+        { name: 'France 24', icon: '🇫🇷', region: 'international', url: 'https://www.france24.com', order: 5 },
+        { name: 'Deutsche Welle', icon: '🇩🇪', region: 'international', url: 'https://www.dw.com', order: 6 },
+        { name: 'NHK World', icon: '🇯🇵', region: 'international', url: 'https://www3.nhk.or.jp/nhkworld', order: 7 },
+        { name: 'CGTN', icon: '🇨🇳', region: 'international', url: 'https://www.cgtn.com', order: 8 },
+        // US Sources
+        { name: 'CNN', icon: '📺', region: 'us', url: 'https://www.cnn.com', order: 1 },
+        { name: 'The New York Times', icon: '📰', region: 'us', url: 'https://www.nytimes.com', order: 2 },
+        { name: 'The Washington Post', icon: '📰', region: 'us', url: 'https://www.washingtonpost.com', order: 3 },
+        { name: 'NPR', icon: '📻', region: 'us', url: 'https://www.npr.org', order: 4 },
+        { name: 'Fox News', icon: '📺', region: 'us', url: 'https://www.foxnews.com', order: 5 },
+        { name: 'MSNBC', icon: '📺', region: 'us', url: 'https://www.msnbc.com', order: 6 },
+        { name: 'Bloomberg', icon: '💼', region: 'us', url: 'https://www.bloomberg.com', order: 7 },
+        { name: 'Associated Press', icon: '📰', region: 'us', url: 'https://apnews.com', order: 8 },
+    ];
+
+    console.log('Seeding media outlets...');
+    for (const outlet of mediaOutlets) {
+        const existingOutlet = await payload.find({
+            collection: 'media-outlets',
+            where: {
+                and: [
+                    { name: { equals: outlet.name } },
+                    { region: { equals: outlet.region } }
+                ]
+            }
+        });
+
+        if (existingOutlet.docs.length === 0) {
+            await payload.create({
+                collection: 'media-outlets',
+                data: outlet
+            });
+            console.log(`Created media outlet: ${outlet.name} (${outlet.region})`);
+        } else {
+            console.log(`Media outlet already exists: ${outlet.name}`);
+        }
+    }
+
     console.log('Seeding complete!')
     process.exit(0)
 }
