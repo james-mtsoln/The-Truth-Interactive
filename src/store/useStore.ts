@@ -4,10 +4,10 @@ import { type Topic } from '../types/payload-types';
 export type Language = 'en' | 'es' | 'ja' | 'ko' | 'zh';
 
 interface AppState {
-    viewMode: 'GLOBE' | 'TIMELINE';
+    viewMode: 'GLOBE' | 'TIMELINE' | 'MINDMAP';
     selectedTopic: Topic | null;
     language: Language;
-    setViewMode: (mode: 'GLOBE' | 'TIMELINE') => void;
+    setViewMode: (mode: 'GLOBE' | 'TIMELINE' | 'MINDMAP') => void;
     setSelectedTopic: (topic: Topic | null) => void;
     setLanguage: (language: Language) => void;
 }

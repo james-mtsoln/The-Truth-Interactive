@@ -73,8 +73,8 @@ export const Hotspots = () => {
         // But we can emit an event or just rely on the store change
     };
 
-    // Hide hotspots completely when in timeline view
-    if (viewMode === 'TIMELINE') {
+    // Hide hotspots completely when in timeline or mindmap view
+    if (viewMode === 'TIMELINE' || viewMode === 'MINDMAP') {
         return null;
     }
 

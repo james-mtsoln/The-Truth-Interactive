@@ -2,6 +2,7 @@ import { ThreeScene } from './components/ThreeScene';
 import { UIOverlay } from './components/UIOverlay';
 import { TimelineView } from './components/TimelineView';
 import { LanguageSelector } from './components/LanguageSelector';
+import { MindmapView } from './components/MindmapView';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
@@ -13,6 +14,7 @@ function App() {
         <UIOverlay />
         <LanguageSelector />
         <TimelineView />
+        <MindmapView />
         <ThreeScene />
       </div>
     </QueryClientProvider>

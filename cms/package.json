@@ -1,0 +1,39 @@
+{
+    "name": "the-truth-cms",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "generate:types": "payload generate:types",
+        "payload": "payload"
+    },
+    "dependencies": {
+        "@payloadcms/db-mongodb": "latest",
+        "@payloadcms/next": "latest",
+        "@payloadcms/richtext-lexical": "latest",
+        "@payloadcms/ui": "latest",
+        "cross-env": "^7.0.3",
+        "graphql": "^16.8.1",
+        "next": "latest",
+        "payload": "latest",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "sharp": "latest"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.25",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "eslint": "^8",
+        "eslint-config-next": "15.0.0",
+        "tsx": "^4.21.0",
+        "typescript": "^5.3.3"
+    },
+    "engines": {
+        "node": ">=18.19.0"
+    }
+}

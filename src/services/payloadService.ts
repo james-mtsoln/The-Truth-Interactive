@@ -2,19 +2,15 @@
  * Payload CMS API Service
  * 
  * This service provides an API-compatible layer that works with Payload CMS data structure.
- * Currently uses mock data, but can be easily swapped to fetch from a real Payload API.
+ * Fetches data from the local Payload CMS instance.
  */
 
 import type { Topic, TimelineEvent, Language, PayloadListResponse } from '../types/payload-types';
-import { payloadTopics } from '../data/payloadTopics';
 
-// Import the existing timeline data to convert it
-import { getTopicData as getOldTopicData } from './dataService';
-import { topics as oldTopics } from '../data/topics';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 /**
  * Payload CMS API Client
- * Simulates Payload CMS REST API responses
  */
 export class PayloadAPIClient {
     private static instance: PayloadAPIClient;
@@ -31,92 +27,94 @@ export class PayloadAPIClient {
 
     /**
      * Get all topics
+     * Fetches with locale=all to get all translations
      */
     async getTopics(): Promise<PayloadListResponse<Topic>> {
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 50));
-
-        return {
-            docs: payloadTopics,
-            totalDocs: payloadTopics.length,
-            limit: 100,
-            totalPages: 1,
-            page: 1,
-            pagingCounter: 1,
-            hasPrevPage: false,
-            hasNextPage: false,
-            prevPage: null,
-            nextPage: null,
-        };
+        try {
+            const response = await fetch(`${API_URL}/topics?limit=100&locale=all`);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch topics: ${response.statusText}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching topics:', error);
+            return {
+                docs: [],
+                totalDocs: 0,
+                limit: 100,
+                totalPages: 1,
+                page: 1,
+                pagingCounter: 1,
+                hasPrevPage: false,
+                hasNextPage: false,
+                prevPage: null,
+                nextPage: null,
+            };
+        }
     }
 
     /**
      * Get topic by ID
      */
     async getTopicById(id: string): Promise<Topic | null> {
-        await new Promise(resolve => setTimeout(resolve, 50));
-        return payloadTopics.find(t => t.id === id) || null;
+        try {
+            const response = await fetch(`${API_URL}/topics/${id}?locale=all`);
+            if (!response.ok) {
+                if (response.status === 404) return null;
+                throw new Error(`Failed to fetch topic ${id}: ${response.statusText}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error(`Error fetching topic ${id}:`, error);
+            return null;
+        }
     }
 
     /**
      * Get topic by slug
      */
     async getTopicBySlug(slug: string): Promise<Topic | null> {
-        await new Promise(resolve => setTimeout(resolve, 50));
-        return payloadTopics.find(t => t.slug === slug) || null;
+        try {
+            const response = await fetch(`${API_URL}/topics?where[slug][equals]=${slug}&locale=all`);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch topic by slug ${slug}: ${response.statusText}`);
+            }
+            const data: PayloadListResponse<Topic> = await response.json();
+            return data.docs[0] || null;
+        } catch (error) {
+            console.error(`Error fetching topic by slug ${slug}:`, error);
+            return null;
+        }
     }
 
     /**
      * Get timeline events for a topic
-     * This method converts the old format data to Payload format on-the-fly
      */
     async getTimelineEvents(topicSlug: string, language: Language = 'en'): Promise<TimelineEvent[]> {
-        await new Promise(resolve => setTimeout(resolve, 50));
-
-        // Find the topic
-        const topic = payloadTopics.find(t => t.slug === topicSlug);
-        if (!topic) return [];
-
         // Check cache
-        const cacheKey = `${topicSlug}-${language}`;
+        const cacheKey = `${topicSlug}-${language}`; // Cache key still includes language although we fetch all
         if (this.timelineCache.has(cacheKey)) {
             return this.timelineCache.get(cacheKey)!;
         }
 
-        // Find old topic to get data
-        const oldTopic = oldTopics.find(t => t.id === topicSlug);
-        if (!oldTopic) return [];
-
         try {
-            // Get old format data
-            const oldEvents = await getOldTopicData(oldTopic, language);
+            // First get the topic to get its ID (needed for relationship query if we can't query by related slug directly easily)
+            // Actually Payload allows querying related fields: where[topic.slug][equals]=...
+            // But let's use the slug directly if possible.
 
-            // Convert to Payload format
-            const payloadEvents: TimelineEvent[] = oldEvents.map((event, index) => {
-                // Create fully localized event
-                const localizedEvent: TimelineEvent = {
-                    id: `evt-${topic.id}-${index + 1}`,
-                    topic: topic.id,
-                    date: event.title,
-                    title: { en: event.title, es: event.title, ja: event.title, ko: event.title, zh: event.title },
-                    cardTitle: { en: event.cardTitle, es: event.cardTitle, ja: event.cardTitle, ko: event.cardTitle, zh: event.cardTitle },
-                    cardSubtitle: { en: event.cardSubtitle, es: event.cardSubtitle, ja: event.cardSubtitle, ko: event.cardSubtitle, zh: event.cardSubtitle },
-                    cardDetailedText: { en: event.cardDetailedText, es: event.cardDetailedText, ja: event.cardDetailedText, ko: event.cardDetailedText, zh: event.cardDetailedText },
-                    mediaSource: event.mediaSource,
-                    media: event.media,
-                    order: index + 1,
-                    _status: 'published',
-                    createdAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString(),
-                };
+            const response = await fetch(`${API_URL}/timeline-events?where[topic.slug][equals]=${topicSlug}&limit=100&sort=order&locale=all`);
 
-                return localizedEvent;
-            });
+            if (!response.ok) {
+                throw new Error(`Failed to fetch timeline events: ${response.statusText}`);
+            }
+
+            const data: PayloadListResponse<TimelineEvent> = await response.json();
+            const events = data.docs;
 
             // Cache the result
-            this.timelineCache.set(cacheKey, payloadEvents);
+            this.timelineCache.set(cacheKey, events);
 
-            return payloadEvents;
+            return events;
         } catch (error) {
             console.error(`Error fetching timeline events for ${topicSlug}:`, error);
             return [];
@@ -124,7 +122,7 @@ export class PayloadAPIClient {
     }
 
     /**
-     * Clear timeline cache (useful for development)
+     * Clear timeline cache
      */
     clearCache(): void {
         this.timelineCache.clear();
@@ -139,6 +137,7 @@ export const payloadAPI = PayloadAPIClient.getInstance();
 /**
  * Helper function to get localized field value
  */
-export const getLocalizedValue = <T>(field: Record<Language, T>, language: Language): T => {
+export const getLocalizedValue = <T>(field: Record<Language, T> | undefined, language: Language): T | undefined => {
+    if (!field) return undefined;
     return field[language] || field.en;
 };

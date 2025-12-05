@@ -15,8 +15,8 @@ export const UIOverlay = () => {
         }
     }, [active, progress]);
 
-    // Hide overlay when in timeline view
-    if (viewMode === 'TIMELINE') {
+    // Hide overlay when in timeline or mindmap view
+    if (viewMode === 'TIMELINE' || viewMode === 'MINDMAP') {
         return null;
     }
 

@@ -67,6 +67,9 @@ export interface TimelineEvent {
             url: string;
         };
     };
+    newsPerspective?: LocalizedField;
+    mediaBias?: LocalizedField;
+    diverseViewpoint?: LocalizedField;
     order: number; // For sorting events chronologically
     _status: 'draft' | 'published';
     createdAt: string;

@@ -23,6 +23,9 @@ export const TimelineView = () => {
                 cardDetailedText: getLocalizedValue(event.cardDetailedText, language),
                 mediaSource: typeof event.mediaSource === 'string' ? event.mediaSource : event.mediaSource?.name,
                 media: event.media,
+                newsPerspective: event.newsPerspective ? getLocalizedValue(event.newsPerspective, language) : undefined,
+                mediaBias: event.mediaBias ? getLocalizedValue(event.mediaBias, language) : undefined,
+                diverseViewpoint: event.diverseViewpoint ? getLocalizedValue(event.diverseViewpoint, language) : undefined,
             }));
         },
         enabled: !!selectedTopic,
@@ -100,26 +103,52 @@ export const TimelineView = () => {
                 }}>
                     {selectedTopic.title[language]}
                 </h2>
-                <button
-                    onClick={() => setViewMode('GLOBE')}
-                    style={{
-                        padding: '0.6rem 1.2rem',
-                        background: '#ff4081',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                        fontSize: '0.8rem',
-                        fontWeight: 600,
-                        textTransform: 'uppercase',
-                        letterSpacing: '1px',
-                        transition: 'all 0.3s ease',
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = '#e91e63'}
-                    onMouseLeave={(e) => e.currentTarget.style.background = '#ff4081'}
-                >
-                    ← Back
-                </button>
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                    <button
+                        onClick={() => setViewMode('MINDMAP')}
+                        style={{
+                            padding: '0.6rem 1.2rem',
+                            background: 'transparent',
+                            color: '#ff4081',
+                            border: '1px solid #ff4081',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '0.8rem',
+                            fontWeight: 600,
+                            textTransform: 'uppercase',
+                            letterSpacing: '1px',
+                            transition: 'all 0.3s ease',
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'rgba(255, 64, 129, 0.1)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'transparent';
+                        }}
+                    >
+                        Deep Dive
+                    </button>
+                    <button
+                        onClick={() => setViewMode('GLOBE')}
+                        style={{
+                            padding: '0.6rem 1.2rem',
+                            background: '#ff4081',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '0.8rem',
+                            fontWeight: 600,
+                            textTransform: 'uppercase',
+                            letterSpacing: '1px',
+                            transition: 'all 0.3s ease',
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.background = '#e91e63'}
+                        onMouseLeave={(e) => e.currentTarget.style.background = '#ff4081'}
+                    >
+                        ← Back
+                    </button>
+                </div>
             </div>
 
             {/* Content Area */}
@@ -216,6 +245,91 @@ export const TimelineView = () => {
                         }}>
                             {currentItem.cardDetailedText}
                         </div>
+
+                        {/* Additional Insights */}
+                        {(currentItem.newsPerspective || currentItem.mediaBias || currentItem.diverseViewpoint) && (
+                            <div style={{
+                                marginTop: '2.5rem',
+                                padding: '1.5rem',
+                                background: 'rgba(255, 255, 255, 0.03)',
+                                borderRadius: '12px',
+                                border: '1px solid rgba(255, 64, 129, 0.2)',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '1.5rem',
+                            }}>
+                                {currentItem.newsPerspective && (
+                                    <div>
+                                        <h4 style={{
+                                            margin: '0 0 0.5rem 0',
+                                            color: '#ff4081',
+                                            fontSize: '0.85rem',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '1px',
+                                            fontWeight: 600
+                                        }}>
+                                            News Perspective
+                                        </h4>
+                                        <p style={{ margin: 0, color: '#eee', fontSize: '1.05rem', lineHeight: '1.6' }}>
+                                            {currentItem.newsPerspective}
+                                        </p>
+                                    </div>
+                                )}
+
+                                {currentItem.mediaBias && (
+                                    <div>
+                                        <h4 style={{
+                                            margin: '0 0 0.5rem 0',
+                                            color: '#ff4081',
+                                            fontSize: '0.85rem',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '1px',
+                                            fontWeight: 600
+                                        }}>
+                                            Media Bias
+                                        </h4>
+                                        <span style={{
+                                            display: 'inline-block',
+                                            padding: '0.3rem 1rem',
+                                            background: 'rgba(255, 64, 129, 0.15)',
+                                            border: '1px solid rgba(255, 64, 129, 0.3)',
+                                            borderRadius: '20px',
+                                            color: '#ff80ab',
+                                            fontSize: '0.95rem',
+                                            fontWeight: 500,
+                                        }}>
+                                            {currentItem.mediaBias}
+                                        </span>
+                                    </div>
+                                )}
+
+                                {currentItem.diverseViewpoint && (
+                                    <div>
+                                        <h4 style={{
+                                            margin: '0 0 0.5rem 0',
+                                            color: '#ff4081',
+                                            fontSize: '0.85rem',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '1px',
+                                            fontWeight: 600
+                                        }}>
+                                            Diverse Viewpoint
+                                        </h4>
+                                        <div style={{
+                                            margin: 0,
+                                            color: '#ddd',
+                                            fontSize: '1.05rem',
+                                            fontStyle: 'italic',
+                                            borderLeft: '3px solid #444',
+                                            paddingLeft: '1rem',
+                                            lineHeight: '1.6'
+                                        }}>
+                                            "{currentItem.diverseViewpoint}"
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                 ) : null}
             </div>

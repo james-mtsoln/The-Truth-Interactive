@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 80, "column": 0}, "map": {"version":3,"sources":["file:///Users/jameshuang/The-Truth-Interactive/cms/src/app/%28payload%29/api/%5B...slug%5D/route.ts"],"sourcesContent":["/* THIS FILE IS USED FOR PAYLOAD REST API */\nimport { REST_GET, REST_POST, REST_DELETE, REST_PUT, REST_PATCH, REST_OPTIONS } from '@payloadcms/next/routes'\nimport config from '@payload-config'\n\nexport const GET = REST_GET(config)\nexport const POST = REST_POST(config)\nexport const DELETE = REST_DELETE(config)\nexport const PUT = REST_PUT(config)\nexport const PATCH = REST_PATCH(config)\nexport const OPTIONS = REST_OPTIONS(config)\n"],"names":[],"mappings":"AAAA,0CAA0C;;;;;;;;;;;;;;AAC1C;AAAA;AAAA;AAAA;AAAA;AAAA;;;;;;;;;;;;;;;;;AAGO,MAAM,MAAM,IAAA,+NAAQ,EAAC;AACrB,MAAM,OAAO,IAAA,kOAAS,EAAC;AACvB,MAAM,SAAS,IAAA,wOAAW,EAAC;AAC3B,MAAM,MAAM,IAAA,+NAAQ,EAAC;AACrB,MAAM,QAAQ,IAAA,qOAAU,EAAC;AACzB,MAAM,UAAU,IAAA,2OAAY,EAAC"}}]
+}

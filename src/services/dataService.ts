@@ -14,6 +14,9 @@ export interface TimelineEvent {
             url: string;
         };
     };
+    newsPerspective?: string;
+    mediaBias?: string;
+    diverseViewpoint?: string;
 }
 
 // Mock historical data with multilingual support
@@ -1552,6 +1555,9 @@ const historicalData: Record<string, Record<Language, TimelineEvent[]>> = {
                 cardSubtitle: "Wang Fuk Court, Hong Kong",
                 cardDetailedText: "A devastating fire erupts in a residential unit at Wang Fuk Court public housing estate in Diamond Hill, Kowloon. Emergency services receive multiple calls reporting heavy smoke and flames.",
                 mediaSource: "SCMP",
+                newsPerspective: "Factual reporting focusing on the immediate incident details.",
+                mediaBias: "Neutral",
+                diverseViewpoint: "Residents express concern over fire safety measures in older estates.",
             },
             {
                 title: "November 15, 2024 - 2:00 AM",
@@ -1559,6 +1565,9 @@ const historicalData: Record<string, Record<Language, TimelineEvent[]>> = {
                 cardSubtitle: "Firefighters Deployed",
                 cardDetailedText: "Over 100 firefighters and 20 fire engines rush to the scene. Residents evacuate from affected floors as firefighters battle the blaze. Police cordon off surrounding areas.",
                 mediaSource: "Hong Kong Free Press",
+                newsPerspective: "Highlighting the scale of the emergency response and evacuation efforts.",
+                mediaBias: "Slightly Pro-Government (emphasizing rapid response)",
+                diverseViewpoint: "Some evacuees report confusion during the evacuation process.",
             },
             {
                 title: "November 15, 2024 - 4:30 AM",
@@ -1566,6 +1575,9 @@ const historicalData: Record<string, Record<Language, TimelineEvent[]>> = {
                 cardSubtitle: "Casualties Reported",
                 cardDetailedText: "Fire is brought under control after 2.5 hours. Preliminary reports indicate multiple casualties with several residents hospitalized for smoke inhalation and burns.",
                 mediaSource: "Radio Television Hong Kong",
+                newsPerspective: "Focus on the outcome of the operation and the human cost involved.",
+                mediaBias: "Neutral",
+                diverseViewpoint: "Hospital staff mention challenges in treating smoke inhalation en masse.",
             },
             {
                 title: "November 16, 2024",
@@ -1573,6 +1585,9 @@ const historicalData: Record<string, Record<Language, TimelineEvent[]>> = {
                 cardSubtitle: "Cause Under Review",
                 cardDetailedText: "Hong Kong Fire Services Department launches comprehensive investigation into the fire's cause. Initial findings suggest possible electrical fault. Building safety records under scrutiny.",
                 mediaSource: "The Standard",
+                newsPerspective: "Scrutiny on building standards and official accountability.",
+                mediaBias: "Critical/Investigative",
+                diverseViewpoint: "Independent experts question the frequency of past inspections.",
             },
             {
                 title: "November 20, 2024",
@@ -1580,6 +1595,9 @@ const historicalData: Record<string, Record<Language, TimelineEvent[]>> = {
                 cardSubtitle: "Public Housing Review",
                 cardDetailedText: "Government orders immediate safety inspections across all public housing estates in Hong Kong. Focus on electrical systems, fire detection equipment, and evacuation procedures.",
                 mediaSource: "Hong Kong Government News",
+                newsPerspective: "Emphasizing government action and systemic response to prevent recurrence.",
+                mediaBias: "Pro-Government",
+                diverseViewpoint: "Opposition politicians argue this response is 'too little, too late'.",
             },
             {
                 title: "December 2024",
@@ -1587,6 +1605,9 @@ const historicalData: Record<string, Record<Language, TimelineEvent[]>> = {
                 cardSubtitle: "Support Measures",
                 cardDetailedText: "Government announces comprehensive support package for affected residents including temporary housing, financial assistance, and counseling services. Building renovation plans underway.",
                 mediaSource: "SCMP",
+                newsPerspective: "Focus on rehabilitation, social support, and moving forward.",
+                mediaBias: "Positive/Community-focused",
+                diverseViewpoint: "Some residents feel the temporary housing arrangements are inadequate.",
             }
         ],
         es: [

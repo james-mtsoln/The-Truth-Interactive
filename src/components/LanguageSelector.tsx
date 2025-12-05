@@ -33,8 +33,8 @@ export const LanguageSelector = () => {
         };
     }, [isOpen]);
 
-    // Hide in timeline view
-    if (viewMode === 'TIMELINE') {
+    // Hide in timeline or mindmap view
+    if (viewMode === 'TIMELINE' || viewMode === 'MINDMAP') {
         return null;
     }
 
