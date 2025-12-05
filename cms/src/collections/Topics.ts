@@ -5,7 +5,9 @@ export const Topics: CollectionConfig = {
     slug: 'topics',
     access: {
         read: () => true,
-        delete: () => true, // Allow deletion
+        create: () => true,
+        update: () => true,
+        delete: () => true,
     },
     admin: {
         useAsTitle: 'slug',
