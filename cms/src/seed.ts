@@ -2,7 +2,25 @@ import config from './payload.config'
 import { getPayload } from 'payload'
 import { historicalData, type Language } from './seedData'
 
-const payloadTopics = [
+
+type PayloadTopic = {
+    id: string
+    slug: string
+    title: {
+        [key: string]: string
+    }
+    summary: {
+        [key: string]: string
+    }
+    location: {
+        lat: number
+        lon: number
+    }
+    type: 'environment' | 'technology' | 'economy' | 'health' | 'conflict' | 'science'
+    _status: string
+}
+
+const payloadTopics: PayloadTopic[] = [
     {
         id: '1',
         slug: 'climate-change',
