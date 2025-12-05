@@ -9,6 +9,22 @@ export const Topics: CollectionConfig = {
     admin: {
         useAsTitle: 'slug',
     },
+    hooks: {
+        beforeDelete: [
+            async ({ id, req }) => {
+                // Delete all timeline events related to this topic before deleting the topic
+                const payload = req.payload
+                await payload.delete({
+                    collection: 'timeline-events',
+                    where: {
+                        topic: {
+                            equals: id,
+                        },
+                    },
+                })
+            },
+        ],
+    },
     fields: [
         {
             name: 'title',

@@ -15,6 +15,11 @@ export const TimelineEvents: CollectionConfig = {
             type: 'relationship',
             relationTo: 'topics',
             required: true,
+            // Allow null to enable deletion of parent topics
+            // Related events should be deleted first or manually cleaned up
+            admin: {
+                description: 'The parent topic this event belongs to',
+            },
         },
         {
             name: 'title',
