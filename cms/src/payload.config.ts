@@ -38,6 +38,16 @@ export default buildConfig({
     plugins: [
         // Add plugins here
     ],
-    cors: [process.env.FRONTEND_URL || 'http://localhost:5173', 'http://localhost:3000'],
-    csrf: [process.env.FRONTEND_URL || 'http://localhost:5173', 'http://localhost:3000'],
+    cors: [
+        process.env.FRONTEND_URL || 'http://localhost:5173',
+        'http://localhost:3000',
+        'https://the-truth-interactive.vercel.app',
+        'https://the-truth-interactive-*.vercel.app',
+    ],
+    csrf: [
+        process.env.FRONTEND_URL || 'http://localhost:5173',
+        'http://localhost:3000',
+        'https://the-truth-interactive.vercel.app',
+        'https://the-truth-interactive-*.vercel.app',
+    ],
 })
