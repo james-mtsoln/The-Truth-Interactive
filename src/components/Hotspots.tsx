@@ -29,7 +29,9 @@ export const Hotspots = () => {
     useEffect(() => {
         import('../services/payloadService').then(({ payloadAPI }) => {
             payloadAPI.getTopics().then((response) => {
-                setTopics(response.docs);
+                // Filter to only show topics with showInViewA enabled (default true if undefined)
+                const visibleTopics = response.docs.filter(topic => topic.showInViewA !== false);
+                setTopics(visibleTopics);
             });
         });
     }, []);

@@ -37,6 +37,7 @@ export interface Topic {
     id: string;
     title: LocalizedField;
     slug: string;
+    showInViewA?: boolean; // Toggle to show/hide on globe in View A
     summary: LocalizedField;
     type: 'environment' | 'technology' | 'economy' | 'health' | 'conflict' | 'science';
     location: {

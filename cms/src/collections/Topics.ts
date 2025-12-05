@@ -47,6 +47,15 @@ export const Topics: CollectionConfig = {
             unique: true,
         },
         {
+            name: 'showInViewA',
+            type: 'checkbox',
+            defaultValue: true,
+            admin: {
+                description: 'Toggle to show/hide this topic on the globe in View A',
+                position: 'sidebar',
+            },
+        },
+        {
             name: 'summary',
             type: 'textarea',
             localized: true,
