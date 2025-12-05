@@ -5,6 +5,7 @@ export const TimelineEvents: CollectionConfig = {
     slug: 'timeline-events',
     access: {
         read: () => true,
+        delete: () => true, // Allow deletion
     },
     admin: {
         useAsTitle: 'id',

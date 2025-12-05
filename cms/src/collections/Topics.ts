@@ -5,6 +5,7 @@ export const Topics: CollectionConfig = {
     slug: 'topics',
     access: {
         read: () => true,
+        delete: () => true, // Allow deletion
     },
     admin: {
         useAsTitle: 'slug',
@@ -12,16 +13,23 @@ export const Topics: CollectionConfig = {
     hooks: {
         beforeDelete: [
             async ({ id, req }) => {
-                // Delete all timeline events related to this topic before deleting the topic
-                const payload = req.payload
-                await payload.delete({
-                    collection: 'timeline-events',
-                    where: {
-                        topic: {
-                            equals: id,
+                try {
+                    // Delete all timeline events related to this topic before deleting the topic
+                    const payload = req.payload
+                    const result = await payload.delete({
+                        collection: 'timeline-events',
+                        where: {
+                            topic: {
+                                equals: id,
+                            },
                         },
-                    },
-                })
+                        req, // Pass request context for proper auth
+                    })
+                    console.log(`Deleted ${result.docs?.length || 0} timeline events for topic ${id}`)
+                } catch (error) {
+                    // Log but don't block deletion if cleanup fails
+                    console.error('Error cleaning up timeline events:', error)
+                }
             },
         ],
     },
