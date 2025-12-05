@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["file:///Users/jameshuang/The-Truth-Interactive/cms/src/app/%28payload%29/admin/%5B%5B...segments%5D%5D/page.tsx"],"sourcesContent":["/* THIS FILE IS USED FOR PAYLOAD ADMIN UI */\nimport config from '@/payload.config'\nimport { RootPage, generatePageMetadata } from '@payloadcms/next/views'\nimport { importMap } from '@/importMap'\n\ntype Args = {\n    params: Promise<{\n        segments: string[]\n    }>\n    searchParams: Promise<{\n        [key: string]: string | string[]\n    }>\n}\n\nexport const generateMetadata = ({ params, searchParams }: Args) =>\n    generatePageMetadata({ config, params, searchParams })\n\nconst Page = ({ params, searchParams }: Args) => (\n    <RootPage\n        config={config}\n        params={params}\n        searchParams={searchParams}\n        importMap={importMap}\n    />\n)\n\nexport default Page\n"],"names":[],"mappings":"AAAA,0CAA0C;;;;;;;AAC1C;AACA;AAAA;AACA;;;;;;;;;;;AAWO,MAAM,mBAAmB,CAAC,EAAE,MAAM,EAAE,YAAY,EAAQ,GAC3D,IAAA,wMAAoB,EAAC;QAAE,QAAA,0IAAM;QAAE;QAAQ;IAAa;AAExD,MAAM,OAAO,CAAC,EAAE,MAAM,EAAE,YAAY,EAAQ,iBACxC,qPAAC,yLAAQ;QACL,QAAQ,0IAAM;QACd,QAAQ;QACR,cAAc;QACd,WAAW,oIAAS;;;;;;uCAIb"}}]
-}

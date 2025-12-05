@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 24, "column": 0}, "map": {"version":3,"sources":["file:///Users/jameshuang/The-Truth-Interactive/cms/src/importMap.ts"],"sourcesContent":["export const importMap = {}\n"],"names":[],"mappings":";;;;AAAO,MAAM,YAAY,CAAC"}},
-    {"offset": {"line": 35, "column": 0}, "map": {"version":3,"sources":["file:///Users/jameshuang/The-Truth-Interactive/cms/src/app/%28payload%29/layout.tsx"],"sourcesContent":["/* THIS FILE IS USED FOR PAYLOAD ADMIN UI */\nimport config from '../../../payload.config'\nimport '@payloadcms/next/css'\nimport { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts'\nimport { importMap } from '../../importMap'\nimport React from 'react'\n\ntype Args = {\n    children: React.ReactNode\n}\n\nconst Layout = ({ children }: Args) =>\n    RootLayout({ config, importMap, serverFunction: handleServerFunctions, children })\n\nexport default Layout\n"],"names":[],"mappings":"AAAA,0CAA0C;;;;;;;;;AAG1C;AAAA;AACA;;;;;;;;;;AAOA,MAAM,SAAS,CAAC,EAAE,QAAQ,EAAQ,GAC9B,IAAA,6LAAU,EAAC;QAAE;QAAQ,WAAA,oIAAS;QAAE,gBAAgB,kNAAqB;QAAE;IAAS;uCAErE"}}]
-}
