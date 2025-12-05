@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { seoFields } from '../fields/seo'
 
 export const Topics: CollectionConfig = {
     slug: 'topics',
@@ -55,5 +56,6 @@ export const Topics: CollectionConfig = {
                 },
             ],
         },
+        seoFields,
     ],
 }

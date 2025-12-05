@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { seoFields } from '../fields/seo'
 
 export const TimelineEvents: CollectionConfig = {
     slug: 'timeline-events',
@@ -63,7 +64,7 @@ export const TimelineEvents: CollectionConfig = {
         {
             name: 'order',
             type: 'number',
-            required: true,
         },
+        seoFields,
     ],
 }
