@@ -289,6 +289,22 @@ export interface TimelineEvent {
   diverseViewpoint?: string | null;
   order?: number | null;
   /**
+   * URL to the original news article
+   */
+  sourceUrl?: string | null;
+  /**
+   * Sentiment score from NewsAPI (-1 to 1)
+   */
+  sentiment?: number | null;
+  /**
+   * Source of the data (e.g., "manual", "newsapi")
+   */
+  apiSource?: string | null;
+  /**
+   * Actual publication date from news source
+   */
+  publishedDate?: string | null;
+  /**
    * Search engine optimization and social media metadata
    */
   seo?: {
@@ -592,6 +608,10 @@ export interface TimelineEventsSelect<T extends boolean = true> {
   mediaBias?: T;
   diverseViewpoint?: T;
   order?: T;
+  sourceUrl?: T;
+  sentiment?: T;
+  apiSource?: T;
+  publishedDate?: T;
   seo?:
     | T
     | {

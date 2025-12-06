@@ -1,6 +1,8 @@
+import 'dotenv/config'
 import config from './payload.config'
 import { getPayload } from 'payload'
 import { historicalData, type Language } from './seedData'
+import { getTopicSEO } from './seoData'
 
 
 type PayloadTopic = {
@@ -263,31 +265,66 @@ const seed = async () => {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { id, _status, title, summary, ...topicData } = topic;
 
+            // Get SEO data for English
+            const seoData = getTopicSEO(topic.slug, title, summary, topic.type, 'en');
+
             topicDoc = await payload.create({
                 collection: 'topics',
                 data: {
                     ...topicData,
                     title: title.en,
                     summary: summary.en,
+                    seo: seoData,
                 },
             })
             console.log(`Created topic: ${topic.slug}`)
 
             // Update other locales
             for (const locale of locales) {
+                // Get SEO data for this locale
+                const localeSeoData = getTopicSEO(topic.slug, title, summary, topic.type, locale);
+
                 await payload.update({
                     collection: 'topics',
                     id: topicDoc.id,
                     data: {
                         title: title[locale],
                         summary: summary[locale],
+                        seo: localeSeoData,
                     },
                     locale: locale,
                 })
             }
         } else {
-            console.log(`Topic already exists: ${topic.slug}`)
+            console.log(`Topic already exists: ${topic.slug}, updating SEO data...`);
             topicDoc = existingTopic.docs[0];
+
+            // Update existing topic with SEO data for English
+            const { id, _status, title, summary, ...topicData } = topic;
+            const seoData = getTopicSEO(topic.slug, title, summary, topic.type, 'en');
+
+            await payload.update({
+                collection: 'topics',
+                id: topicDoc.id,
+                data: {
+                    seo: seoData,
+                },
+            });
+
+            // Update SEO for other locales
+            for (const locale of locales) {
+                const localeSeoData = getTopicSEO(topic.slug, title, summary, topic.type, locale);
+
+                await payload.update({
+                    collection: 'topics',
+                    id: topicDoc.id,
+                    data: {
+                        seo: localeSeoData,
+                    },
+                    locale: locale,
+                });
+            }
+            console.log(`Updated SEO data for topic: ${topic.slug}`);
         }
 
         // Seed Timeline Events for this topic

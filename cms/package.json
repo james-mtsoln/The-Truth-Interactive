@@ -10,7 +10,8 @@
         "lint": "next lint",
         "generate:types": "payload generate:types",
         "payload": "payload",
-        "seed": "tsx src/seed.ts"
+        "seed": "tsx src/seed.ts",
+        "fetch-news": "tsx src/fetchNewsData.ts"
     },
     "dependencies": {
         "@payloadcms/db-mongodb": "latest",
@@ -18,6 +19,8 @@
         "@payloadcms/richtext-lexical": "latest",
         "@payloadcms/ui": "latest",
         "cross-env": "^7.0.3",
+        "dotenv": "^17.2.3",
+        "eventregistry": "^9.1.1",
         "graphql": "^16.8.1",
         "next": "15.5.7",
         "payload": "latest",

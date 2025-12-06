@@ -118,7 +118,7 @@ export const Hotspots = () => {
 
                 return (
                     <group key={topic.id} position={position}>
-                        {/* Invisible Hitbox */}
+                        {/* Invisible Hitbox - Much larger size to cover entire label area */}
                         <mesh
                             visible={false}
                             onPointerOver={(e) => {
@@ -134,12 +134,16 @@ export const Hotspots = () => {
                                 e.stopPropagation();
                                 handleTopicClick(topic);
                             }}
+                            onPointerDown={(e) => {
+                                // Mobile touch support - trigger on pointer down for better responsiveness
+                                e.stopPropagation();
+                            }}
                         >
-                            <sphereGeometry args={[0.2, 16, 16]} />
+                            <sphereGeometry args={[0.6, 16, 16]} />
                             <meshBasicMaterial color="red" />
                         </mesh>
 
-                        {/* Label */}
+                        {/* Label - Keep pointer events none to allow mesh clicks */}
                         <Html
                             distanceFactor={10}
                             zIndexRange={[100, 0]}

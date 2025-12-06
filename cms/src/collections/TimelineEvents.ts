@@ -73,6 +73,34 @@ export const TimelineEvents: CollectionConfig = {
             name: 'order',
             type: 'number',
         },
+        {
+            name: 'sourceUrl',
+            type: 'text',
+            admin: {
+                description: 'URL to the original news article',
+            },
+        },
+        {
+            name: 'sentiment',
+            type: 'number',
+            admin: {
+                description: 'Sentiment score from NewsAPI (-1 to 1)',
+            },
+        },
+        {
+            name: 'apiSource',
+            type: 'text',
+            admin: {
+                description: 'Source of the data (e.g., "manual", "newsapi")',
+            },
+        },
+        {
+            name: 'publishedDate',
+            type: 'text',
+            admin: {
+                description: 'Actual publication date from news source',
+            },
+        },
         seoFields,
     ],
 }
